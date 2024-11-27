@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="ReF-LDM: A Latent Diffusion Model for Reference-based Face Image Restoration.">
+  <meta name="keywords" content="ReF-LDM, LDM, diffusion, reference image, reference-based, face image restoration, super-resolution">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ReF-LDM: A Latent Diffusion Model for Reference-based Face Image Restoration</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">ReF-LDM: A Latent Diffusion Model for Reference-based Face Image Restoration</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/chiwei-hsiao">Chi-Wei Hsiao</a><sup>†</sup>,</span>
+            <span class="author-block">
+              <a href="https://yulunalexliu.github.io">Yu-Lun Liu</a><sup>‡</sup>,</span>
+            <span class="author-block">
+              <a href="https://tw.linkedin.com/in/cheng-kun-yang-497950119">Cheng-Kun Yang</a><sup>†</sup>,
+            </span>
+            <span class="author-block">
+              Sheng-Po Kuo<sup>†</sup>,
+            </span>
+            <span class="author-block">
+              Yucheun Kevin Jou<sup>†</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://tw.linkedin.com/in/chia-ping-chen-81674078">Chia-Ping Chen</a><sup>†</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>†</sup>MediaTek,</span>
+            <span class="author-block"><sup>‡</sup>National Yang Ming Chiao Tung University</span>
+          </div>
+
+          <div class="is-size-4">
+            <p><strong>NeurIPS 2024</strong></p>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Paper Link. -->
+              <span class="link-block">
+                <a href="./static/NeurIPS_2024_ReF-LDM.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Poster Link. -->
+              <span class="link-block">
+                <a href="./static/poster.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Poster</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/ChiWeiHsiao/ref-ldm"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/teaser.png" alt="teaser"/>
+      <h2 class="subtitle has-text-centered">
+        <strong>ReF-LDM</strong> leverages a flexible number of reference images to restore a low-quality face image.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Overview -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <!-- <h2 class="title is-3">Overview</h2> -->
+        <div class="content has-text-justified">
+          <p>
+          🔥Key highlights include:
+          <ul>
+            <li><strong>CacheKV</strong>: efficiently incorporates a flexible number of reference images into an LDM.</li>
+            <li><strong>Timestep-scaled identity loss</strong>: addresses diffusion training 1-step prediction OOD issue.</li>
+            <li><strong>FFHQ-Ref dataset</strong>: 20,405 face images with corresponding reference images.</li>
+          </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Overview -->
+
+    <!-- Model Pipeline -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Model Pipeline</h2>
+        <div class="content has-text-justified">
+          <p>
+          We first extract and cache the key and value tokens of the reference images just once.
+          These cached KV tokens can then be utlized repeatedly in each of the T timesteps of the main denoising process.
+          </p>
+          <img src="static/images/model.png" alt="Model Pipeline"/>
+        </div>
+      </div>
+    </div>
+    <!-- Model Pipeline -->
+
+    <!-- CacheKV Ablation -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">CacheKV Ablation</h2>
+        <div class="content has-text-justified">
+          <p>
+          We also experimented with other designs for integrating the reference images.
+          However, they are either ineffective (<i>channel-concatenation</i>, <i>cross-attention</i>) or inefficient (<i>spatial-concatenation</i>).
+          </p>
+          <img src="static/images/cachekv_abla.png" alt="CacheKV Ablation"/>
+          <br><small>*Note: tested with 5 reference images on a single GTX 1080.</small>
+        </div>
+      </div>
+    </div>
+    <!--/ CacheKV Ablation -->
+
+    <!-- Timestep-scaled Identity Loss -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Timestep-scaled Identity Loss</h2>
+        <div class="content has-text-justified">
+          <p>
+          We found that training with identity loss degrades the image quality of the diffusion model.
+          The reason may be that the <strong>one-step model prediction from a large timestep is out-of-distrubution</strong> for the pretrained ArcFace model.
+          Our solution is simple and effective: downscaling the identity loss when a larger timestep is sampled for training.
+          </p>
+          <img src="static/images/timeidloss_qualitative.png" alt="Timestep-scaled Qualitative"  width="90%"/>
+          <img src="static/images/timeidloss_one_step_prediction.png" alt="One-step prediction" width="30%"/>
+        </div>
+      </div>
+    </div>
+    <!--/ Timestep-scaled Identity Loss -->
+
+    <!-- Qualitative -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Qualitative Results</h2>
+        <div class="content has-text-justified">
+          <p>Our <strong>ReF-LDM</strong> achieves great identity similarity by successfully leveraging the reference images.
+          </p>
+          <img src="static/images/qualitative.png" alt="Qualitative Results"/>
+        </div>
+      </div>
+    </div>
+    <!--/ Qualitative -->
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{hsiao2024refldm,
+  title={ReF-LDM: A Latent Diffusion Model for Reference-based Face Image Restoration},
+  author={Chi-Wei Hsiao and Yu-Lun Liu and Cheng-Kun Yang and Sheng-Po Kuo and Yucheun Kevin Jou and Chia-Ping Chen},
+  journal={Advances in Neural Information Processing Systems},
+  year={2024}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            The website template was borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
